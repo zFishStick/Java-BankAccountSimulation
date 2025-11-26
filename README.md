@@ -3,9 +3,7 @@
 You have just been hired as a software developer to maintain a banking system.
 The previous developer left no documentation, and some parts of the codebase contain ambiguous variable names and inconsistent method naming conventions.
 
-Your task is to analyze the three classes:
-BankAccount.java, CheckingAccount.java, and SavingsAccount.java,
-understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers”.
+Your task is to analyze the `BankAccount` class, understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers” provided [here]().
 
 For each function, you must provide:
 - A short description of what the function does (its purpose).
