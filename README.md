@@ -1,156 +1,31 @@
-# Java Bank Accounts Simulator using Object Oriented Programming
-The Bank Account Simulation example covers most Object Oriented Programming features i.e. Class, Object, Inheritance, Polymorphism, Encapsulation, etc.
+# Controlled Experiment
 
-## BankAccount Blueprint and Template
-1. **State / Attributes**
+You have just been hired as a software developer to maintain a banking system.
+The previous developer left no documentation, and some parts of the codebase contain ambiguous variable names and inconsistent method naming conventions.
 
-  1. accountName
-  
-  2. accountNumber
-  
-  3. balance
-  
-2. **Behaviors / Methods**
+Your task is to analyze the three classes:
+BankAccount.java, CheckingAccount.java, and SavingsAccount.java,
+understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers”.
 
-  1. BankAccount(String accNumber, String accName)
-  
-  2. getAccountName()
-  
-  3. getAccountNumber()
-  
-  4. getBalance() 
-  
-  5. deposit(double amount)
-  
-  6. withdraw(double amount)
+For each function, you must provide:
+- A short description of what the function does (its purpose).
+- Whether you think the function requires comments or not.
 
-### BankAccount Demo
-Following BankAccountDemo.java demonstrates the use of BankAccount.java
- ```java
- public class BankAccountDemo {
+Your goal is not to rewrite the code, but to understand it and assess whether comments would improve its readability.
 
-	public static void main(String[] args) {
-		BankAccount absherzad = new BankAccount("20120", "Abdul Rahman Sherzad");
+### **Example format**
+```java
+public double applyDiscount(double amount, boolean isPremium) {
+    if (isPremium) {
+        amount = amount * 0.9;
+    }
+    return amount;
+}
 
-		absherzad.deposit(500);
-		absherzad.deposit(1500);
+```
+**Function purpose**: Applies a discount to the given amount if the customer is a premium member, otherwise returns the original amount.
+***Needs comments?*** No
 
-		System.out.println("Balance is: " + absherzad.getBalance()); // 2000
+Some functions may be straightforward and self-explanatory, while others might be complex and benefit from additional comments. Your insights will help improve the codebase for future developers.
 
-		absherzad.withdraw(400);
-
-		System.out.println("Balance is: " + absherzad.getBalance()); // 1600
-	}
- }
- ```
- 
-## SavingsAccount Blueprint and Template
-1. **State / Attributes**
-
-  1. interestRate
-  
-  2. accountName	// _inherited from BankAccount_
-
-  3. accountNumber	// _inherited from BankAccount_
-
-  4. balance		// _inherited from BankAccount_
-
-2. **Behaviors / Methods**
-
-  1. SavingsAccount(String accNumber, String accName, double rate)
-  
-  2. addInterest()
-
-  3. BankAccount(String accNumber, String accName) // _inherited from BankAccount_
-  
-  4. getAccountName()		// _inherited from BankAccount_
-  
-  5. getAccountNumber()		// _inherited from BankAccount_
-  
-  6. getBalance() 			// _inherited from BankAccount_
-  
-  7. deposit(double amount)	// _inherited from BankAccount_
-  
-  8. withdraw(double amount)	// _inherited from BankAccount_
-
-### SavingsAccount Demo
-Following SavingsAccountDemo.java demonstrates the use of SavingsAccount.java
- ```java
- public class SavingsAccountDemo {
-
-	public static void main(String[] args) {
-		SavingsAccount saving = new SavingsAccount("20120",
-				"Abdul Rahman Sherzad", 10);
-		saving.deposit(500);
-		System.out.println("Balance Before Interest: " + saving.getBalance());
-
-		saving.addInterest();
-		System.out.println("Balance After Interest: " + saving.getBalance());
-	}
- }
- ```
-  
-## CheckingAccount Blueprint and Template
-1. **State / Attributes**
-
-  1. transactionCount
-  
-  2. NUM_FREE
-  
-  3. TRANS_FEE
-  
-  4. accountName	// _inherited from BankAccount_
-  
-  5. accountNumber	// _inherited from BankAccount_
-  
-  6. balance		// _inherited from BankAccount_
-  
-2. **Behaviors / Methods**
-
-  1. CheckingAccount(String accNumber, String accName)
-  
-  2. BankAccount(String accNumber, String accName) // _inherited from BankAccount_
-  
-  3. getAccountName()		// _inherited from BankAccount_
-  
-  4. getAccountNumber()		// _inherited from BankAccount_
-  
-  5. getBalance() 			// _inherited from BankAccount_
-  
-  6. deductFees()
-  
-  7. deposit(double amount)	// _Overridden_
-  
-  8. withdraw(double amount)	// _Overridden_
-  
-  9. deposit(double amount)	// _inherited from BankAccount_
-  
-  10. withdraw(double amount)	// _inherited from BankAccount_
-
-### CheckingAccount Demo
-Following CheckingAccountDemo.java demonstrates the use of CheckingAccount.java
- ```java
- public class CheckingAccountDemo {
-	public static void main(String[] args) {
-		CheckingAccount checking = new CheckingAccount("20120",
-				"Abdul Rahman Sherzad");
-
-		checking.deposit(500);
-		checking.withdraw(200);
-		checking.deposit(700);
-		// No deduction fee because we had only 3 transactions
-		checking.deductFees();
-		System.out.println("transactions <= 3: " + checking.getBalance());
-
-		// One more transaction
-		checking.deposit(200);
-		// Deduction fee occurs because we have had 4 transactions
-		checking.deductFees();
-		System.out.println("transactions > 3: " + checking.getBalance());
-	}
- }
- ```
-
-[Presentation on Slide Share website](http://www.slideshare.net/absherzad/everything-about-object-oriented-programming)
- 
-[Follow us on Facebook](https://www.facebook.com/Oxus20)
+Good luck!

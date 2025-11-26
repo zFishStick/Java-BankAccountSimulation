@@ -1,98 +1,128 @@
-/*
- * Copyright (c) 2013, OXUS20 and its affiliates. All rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- */
 
-/**
- * BankAccount class is responsible creating default bank accounts Enable the
- * accounts owner to deposit, withdraw, check balance, etc.
- * 
- * @author <a href="mailto:absherzad@gmail.com">Abdul Rahman Sherzad</a>
- * @version 1.0
- */
 public class BankAccount {
-	// BankAccount attributes
-	private String accountNumber;
-	private String accountName;
-	private double balance;
 
-	// BankAccount methods
+	private double b;
+	private double intRate;
 
-	/**
-	 * This is the constructor responsible for account creation with initial
-	 * balance 0.0
-	 * 
-	 * @param accNumber
-	 *            Bank Account Number as String
-	 * @param accName
-	 *            Bank Account Name as String
-	 */
-	public BankAccount(String accNumber, String accName) {
-		accountNumber = accNumber;
-		accountName = accName;
-		balance = 0;
+	public BankAccount(double rate) {
+		b = 0;
+		intRate = rate;
 	}
 
-	// methods to read the attributes
-
-	/**
-	 * Returns the Account Name of the bank account object.
-	 * 
-	 * @return accountName
-	 */
-	public String getAccountName() {
-		return accountName;
-	}
-
-	/**
-	 * Returns the Account Number of the bank account object.
-	 * 
-	 * @return accountNumber
-	 */
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	/**
-	 * Returns the Balance value of the bank account object.
-	 * 
-	 * @return balance
-	 */
-	public double getBalance() {
-		return balance;
-	}
-
-	/**
-	 * This method take care of the deposit transaction Return true on success
-	 * and false on failure
-	 * 
-	 * @param amount
-	 *            the amount to be deposited
-	 * @return boolean
-	 */
-	public boolean deposit(double amount) {
-		if (amount > 0) {
-			balance = balance + amount;
+	public boolean deposit(double a) {
+		if (a > 0) {
+			b = b + a;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	/**
-	 * This method take care of the withdraw transaction Return true on success
-	 * and false on failure
-	 * 
-	 * @param amount
-	 *            the amount to be withdrawn
-	 * @return boolean
-	 */
-	public boolean withdraw(double amount) {
-		if (amount > balance) {
+	public boolean withdraw(double a) {
+		if (a > b) {
 			return false;
 		} else {
-			balance = balance - amount;
+			b = b - a;
 			return true;
 		}
 	}
+
+	public double computeQuarterlyInterest(double rate, int daysInQuarter) {
+		double dailyRate = Math.pow(1 + rate, 1.0 / 365) - 1;
+		double i = b * Math.pow(1 + dailyRate, daysInQuarter) - b;
+
+		if (b > 10000) {
+			i -= (b * 0.01);
+		}
+
+		i = Math.floor(i * 100) / 100.0;
+
+		return i;
+	}
+
+	public double applyMaintenanceFee(double monthlyFee, int months) {
+        double total = 0;
+
+        if (monthlyFee > 0 && months > 0) {
+            for (int k = 0; k < months; k++) {
+                total = total + monthlyFee;
+            }
+
+            double newB = b - total;
+            if (newB >= 0) {
+                b = newB;
+            } else {
+                total = b;
+                b = 0;
+            }
+        }
+
+        return total;
+    }
+
+	public double applyPenaltyIfLowBalance() {
+		if (b < 100) {
+			double penalty = 5 + (100 - b) * 0.02;
+			b -= penalty;
+			return penalty;
+		}
+		
+		return 0;
+	}
+
+	public double adjustBalanceForComplianceCheck(double threshold, double factor) {
+		double adjustment = 0;
+
+		if (b < threshold) {
+			adjustment = (threshold - b) * factor;
+			b += adjustment * 0.1;
+		} else {
+			adjustment = (b - threshold) * factor * 0.05;
+			b -= adjustment;
+		}
+
+		return adjustment;
+	}
+
+	public boolean applyDormancyPolicy(int monthsInactive, double feeRate) {
+		if (monthsInactive < 0 || feeRate < 0) {
+			return false;
+		}
+
+		double penalty = 0;
+
+		if (monthsInactive > 6) {
+			penalty = (monthsInactive - 6) * feeRate;
+
+			if (penalty > b * 0.25) {
+				penalty = b * 0.25;
+			}
+
+			b -= penalty;
+			return true;
+		}
+
+		return false;
+	}
+
+	public void applyMonthlyInterest(int daysInMonth, boolean isHighB) {
+		double baseInt = b * intRate / 100;
+		double adjustedInt = baseInt * Math.pow(1 + 0.01, daysInMonth / 30.0);
+
+		if (isHighB && b > 10000) {
+			adjustedInt *= 1.05;
+		} else if (b < 500) {
+			adjustedInt *= 0.95;
+		}
+
+		deposit(adjustedInt);
+	}
+
+
+	public void addInterest() {
+		double interest = b * intRate / 100;
+		deposit(interest);
+	}
+
+
 }
