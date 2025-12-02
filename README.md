@@ -1,8 +1,12 @@
-# Controlled Experiment
+# ⚗️ Controlled Experiment
 
 You have just been hired as a software developer to maintain a banking system.
 The previous developer left no documentation, and some parts of the codebase contain ambiguous variable names and inconsistent method naming conventions.
 
+## 🪶 Survey
+Before proceeding with the experiment, each participant has to complete the following [survey](https://docs.google.com/forms/d/e/1FAIpQLScqb-erO4dIIE-21L5dMeQmt7gBkKKi7cFq9mn0YP18TE1yew/viewform?usp=sharing&ouid=110733136514221048336).
+
+## 🧠 Activity
 Your task is to analyze the `BankAccount` class, understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers” provided [here](https://forms.gle/29LZXTjSsgKAkYjv6).
 
 For each function, you must provide:
