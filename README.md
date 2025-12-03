@@ -3,11 +3,13 @@
 You have just been hired as a software developer to maintain a banking system.
 The previous developer left no documentation, and some parts of the codebase contain ambiguous variable names and inconsistent method naming conventions.
 
+`Quick tip: you can open the links in a new tab by pressing the mouse wheel, so you don't close the website 😉 `
+
 ## 🪶 Survey
 Before proceeding with the experiment, each participant has to complete the following [survey](https://forms.gle/S5XUBUepJhCz1Mb27).
 
 ## 🧠 Activity
-Your task is to analyze the `BankAccount` class, understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers” provided [here](https://forms.gle/Jb1kgknta1V3mnr1A).
+Your task is to analyze the `BankAccount` class provided [here](https://github.dev/zFishStick/ControlledExperiment), understand the purpose of each function, and document your answers in the Google Form “Bank System – Answers” provided [here](https://forms.gle/Jb1kgknta1V3mnr1A).
 
 For each function, you must provide:
 - A short description of what the function does (its purpose).
